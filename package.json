@@ -1,7 +1,7 @@
 {
-  "name": "pocketbooks",
+  "name": "Reactjs Template",
   "version": "1.0.0",
-  "description": "a google book api webapp",
+  "description": "A complete Reactjs and Webpack setup",
   "main": "index.js",
   "babel": {
     "presets": [
