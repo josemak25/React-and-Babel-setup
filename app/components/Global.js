@@ -22,14 +22,14 @@ class Global extends Component {
                     <div className="col sm-12">
                         <form className="form-group">
                             <input className="input-block" type="text" placeholder=" Search for a book"
-                                id="paperInputs1"
                                 onChange={event => this.setState({query: event.target.value})}
                                 onKeyPress={event => {
                                     if (event.key === 'Enter') {
                                         this.search();
                                             }
-                                        }}/>
-                            <input type="button" className="paper-btn btn-primary" value="search"/>                         
+                                        }}
+                            />
+                            <button className="btn-large" onClick={() => this.search()}>Search</button>                   
                         </form>
                     </div>
                 </div>
