@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { InputGroup, Glyphicon } from 'react-bootstrap';
+import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
+import { METHODS } from 'http';
 
 class Global extends Component {
     constructor(props) {
@@ -10,7 +11,10 @@ class Global extends Component {
     }
 
     search () {
-        console.log('search', this.state.query)
+        const BASE_URL = 'https://www.googleapis.com/books/v1/volumes?q=';
+        fetch(`${BASE_URL}${this.state.query}`, {method: 'GET'})
+            .then(res => res.json())
+            .then(data => console.log(data));
     }
     render() {
         return (
@@ -18,21 +22,22 @@ class Global extends Component {
                 <h2>
                     Pockect Books
                 </h2>
-                <div className="row">
-                    <div className="col sm-12">
-                        <form className="form-group">
-                            <input className="input-block" type="text" placeholder=" Search for a book"
+                <FormGroup>
+                    <InputGroup>
+                        <FormControl className="input-block" type="text" placeholder=" Search for a book"
                                 onChange={event => this.setState({query: event.target.value})}
                                 onKeyPress={event => {
                                     if (event.key === 'Enter') {
                                         this.search();
                                             }
                                         }}
-                            />
-                            <button className="btn-large" onClick={() => this.search()}>Search</button>                   
-                        </form>
-                    </div>
-                </div>
+                        />
+                            
+                        <InputGroup.Addon onClick={() => this.search()}>
+                            <Glyphicon glyph="search"></Glyphicon>
+                        </InputGroup.Addon>
+                    </InputGroup>
+                </FormGroup>
             </div>
         )
     }
